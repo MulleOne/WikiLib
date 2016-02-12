@@ -1,0 +1,25 @@
+<div class="container" style="padding-top: 20px">
+  <%= form_for @book, html: { multipart: true } do |f| %>
+    <div>
+    	<%= image_tag @book.image.url(:medium) %>
+    </div>
+    <h2><%= @book.title %></h2>
+    by
+    <strong>
+      <% @book.authors.each_with_index do |a, index| %>
+          <%= a.first_name %>
+          <%= a.last_name %>
+          <% if (index != (@book.authors.size - 1) ) %>,<% end %>
+      <% end %>
+    </strong>
+    <div>
+    	<%= @book.summary %>
+    </div> 
+  <% end %>
+  <br>
+  <div class="col-md-12">
+    <%= link_to "Back", books_path, class: "btn btn-default" %>
+    <%= link_to "Edit", edit_book_path, class: "btn btn-default" %>
+    <%= link_to "Delete", book_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<ol>
+	<% @authors.each do |author| %>	
+		<li>
+			<% @books.each do |book| %>
+				<% @buks = Array.new %>
+				<% if book.authors.include?(author) %> 
+					<% @buks << book %>
+				<% end %>
+				<%= link_to @buks do %>
+					<%= author.first_name %>
+					<%= author.last_name %>
+				<% end %>
+			<% end %>
+		</li><br>
+	<% end %>
+</ol>
+
+
+<h2>Author's will be displayed on here</h2>
+<h2> List of Authors <h2>
+<% AuthorsController::RUSS_alph.each do |l| %>
+	<%= link_to l, '#' %>
+<% end %>
+<br>
+<br>
+<% AuthorsController::LAT_alph.each do |l| %>
+	<%= link_to l, controller: "authors", action: "list" %>
+<% end %>
+
+<% @books_list.each_slice(3) do |books| %>
+	<div class="row">
+		<% books.each do |book| %>
+			<div class="col-md-4">
+				<div class="image_wrapper">
+					<%= link_to book do %> 
+						<%= image_tag book.image.url(:medium) %>
+					<% end %>
+				</div>
+				<h2><%= link_to book.title, book %></h2>
+				by
+				<strong>
+					<% book.authors.each_with_index do |a, index| %>
+			  			<%= a.first_name %>
+			  			<%= a.last_name %>
+			  			<% if (index != (book.authors.size - 1) ) %>,<% end %>
+					<% end %>
+				</strong>
+				<!--<p><%= book.summary %></p>-->
+			</div>
+		<% end %>
+	</div><br>
+<% end %>
+
+
+<%= form_for @book, html: { multipart: true } do |f| %>
+  <div>
+  	<%= image_tag @book.image.url(:medium) %>
+  </div>
+  <h2><%= @book.title %></h2>
+  by
+  <strong>
+    <% @book.authors.each_with_index do |a, index| %>
+        <%= a.first_name %>
+        <%= a.last_name %>
+        <% if (index != (@book.authors.size - 1) ) %>,<% end %>
+    <% end %>
+  </strong>
+  <div>
+  	<%= @book.summary %>
+  </div> 
+<% end %>
+<br>
+<div class="col-md-12">
+  <%= link_to "Back", books_path, class: "btn btn-default" %>
+  <%= link_to "Edit", edit_book_path, class: "btn btn-default" %>
+  <%= link_to "Delete", book_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+</div>
+
+def index
+		@letter
+		@books = Book.all
+		@buks = @books
+		@authors = Author.all
+		@author_book = Hash.new
+		@authors.each do |author|
+			#@author_book.key = author
+			all_books = Array.new
+			@books.each do |book|
+				if book.authors.include?(author)
+					all_books << book
+				end
+			end
+			@author_book[author] = all_books
+		end 
+	end
+
+
+
+<%= link_to l, list_authors_path(l: true) %>
+	            :controller => "authors", 
+	            :action => "list",
+	            :author l %>
+
+
+
+ { :controller => "authors", :action => "list", :author => author.letter }
+
+I used this code to find all the book baring an Author with the first letter that matchers
+
+def list
+		search_letter = params[:letter]
+		@authors = Author.all;
+		@books = Book.all;
+		@book_list = Array.new;
+		@authors.each do |author|
+			author.first_name.capitalize!
+			first_letter = author.first_name[0]
+			if  (first_letter == search_letter) 
+				@books.each do |book|
+					if book.authors.include?(author)
+						@book_list << book
+					end
+				end
+			end
+		end
+	end
+
+book_list_authors_path(@author, :book_list => @buks)

@@ -1,0 +1,30 @@
+<div class="btn-group" role="group" aria-label="...">
+	<button  type="button" class="btn btn-default" >
+		<%= link_to "Add New Book", new_book_path %>
+	</button>
+</div>
+<br>
+<br>	
+<% @books.each_slice(3) do |books| %>
+	<div class="row">
+		<% books.each do |book| %>
+			<div class="col-md-4">
+				<div class="image_wrapper">
+					<%= link_to book do %> 
+						<%= image_tag book.image.url(:medium) %>
+					<% end %>
+				</div>
+				<h2><%= link_to book.title, book %></h2>
+				by
+				<strong>
+					<% book.authors.each_with_index do |a, index| %>
+			  			<%= a.first_name %>
+			  			<%= a.last_name %>
+			  			<% if (index != (book.authors.size - 1) ) %>,<% end %>
+					<% end %>
+				</strong>
+				<!--<p><%= book.summary %></p>-->
+			</div>
+		<% end %>
+	</div><br>
+<% end %>

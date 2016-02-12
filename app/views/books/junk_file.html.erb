@@ -1,0 +1,84 @@
+<%= form_for @book, html: { multipart: true } do |f| %>
+  <div class="field">
+  	<%= f.label :image %>
+  	<%= f.file_field :image %>
+  </div>
+  
+  <div class="field">
+  	<%= f.label :title %>
+  	<%= f.text_field :title %>
+  </div>
+  
+  <div class="field">
+  	<%= f.label :summary %>
+  	<%= f.text_area :summary %>
+  </div>
+
+  <%= f.fields_for :authors do |a| %>
+    <div>
+      <%= a.label :first_name %>
+      <%= a.text_field :first_name %>
+    </div>
+    <div>
+      <%= a.label :last_name %>
+      <%= a.text_field :last_name %>
+    </div>
+  <% end %>
+
+  <%= f.fields_for :authors do |b| %>
+    <div>
+      <%= b.label :first_name %>
+      <%= b.text_field :first_name %>
+    </div>
+    <div>
+      <%= b.label :last_name %>
+      <%= b.text_field :last_name %>
+    </div>
+  <% end %>
+  
+  <div class="actions">
+  	<%= f.submit %>
+  </div>
+ <% end %>
+
+
+
+ <%= simple_form_for @book, html: { multipart: true } do |f| %>
+  <% if @book.errors.any? %>
+    <div errors>
+      <p>
+        <%= @book.errors.count %>
+        Prevented this recipe from saving
+      </p>
+      <ul>
+        <% @book.errors.full_messages.each do |msg| %>
+          <li> <%= msg %> </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="panel-body">
+    <%= f.input :title, input_html: { class: 'form-control' } %>
+    <%= f.input :summary, input_html: { class: 'form-control' } %>
+    <% if @book.image.present? %>
+      <%= image_tag @book.image.url(:thumb) %>
+    <% end %>
+    <%= f.file_field :image, input_html: { class: 'form-control' } %>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Author(s)</h3>
+        <div id="authors">
+          <%= f.simple_fields_for :authors do |author| %>
+            <%= render 'author_fields', f: author %>
+            <div class="links">
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
+
+
+#$(this).closest('fieldset').hide()

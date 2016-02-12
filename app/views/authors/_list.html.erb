@@ -1,0 +1,24 @@
+<h2> I'll list all the Authors that begin with the same letter!<h2>
+<ol style="margin: 0 0 0 10px;">
+	<% @authors.each do |author| %>	
+		<li>
+			<% @count = 0 %>
+			<% @books.each do |book| %>
+				<% @buks = Array.new %>
+				<% if book.authors.include?(author) %> 
+					<% @buks << book %>
+					<% @count = @count+1 %>
+					<% if @count == 1 %>
+						<%= link_to book do %>
+							<%= author.first_name %>
+							<%= author.last_name %>
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+			(<%= @count %>)
+		</li><br>
+	<% end %>
+</ol>
+<h1>DIDN'T I TELL YOU!?!<h1>
+<%= link_to "Back", authors_path, class: "btn btn-default"%>

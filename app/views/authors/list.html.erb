@@ -1,0 +1,8 @@
+<h2> I'll list all the Authors that begin with the same letter!<h2>
+<% if @found %>
+	<%= render 'form' %>
+<% else %>
+	<h4><span style="color:red">Sorry, no Author's by that first letter were found</span><h4>
+<% end %>
+<h1>DIDN'T I TELL YOU!?!<h1>
+<%= link_to "Back", authors_path, class: "btn btn-default"%>

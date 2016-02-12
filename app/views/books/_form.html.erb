@@ -1,0 +1,37 @@
+<%= form_for @book, html: { multipart: true } do |f| %>
+  <% if @book.errors.any? %>
+    <div errors>
+      <p>
+        <%= @book.errors.count %>
+        Prevented this recipe from saving
+      </p>
+      <ul>
+        <% @book.errors.full_messages.each do |msg| %>
+          <li> <%= msg %> </li>
+        <% end %>
+      </ul>
+    </div><br>
+  <% end %>
+  <div class="panel-body">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.label :summary %>
+      <%= f.text_area :summary, class: 'form-control' %>
+    <div>
+      <%= f.label :image %>
+      <%= f.file_field :image, class: 'form-control' %>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Author(s)</h3>
+        <div id="authors">
+          <%= f.fields_for :authors do |authors_for_form| %>
+            <%= render 'author_fields', f: authors_for_form %>
+          <% end %>
+          <%= link_to_add_fields "Add Another Aurthor", f, :authors %>
+        </div>
+        </div>
+      </div>
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,168 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap/theme";
+
+/*Added this trying to style a home page*/
+body {
+	padding: 0;
+	margin: 0;
+}
+
+.nav-justified {
+	padding-bottom: 0px;
+	padding-top: 0px;
+
+}
+
+/* Loving the work on this piece of element*/
+#top-area {
+	top: 0;
+	left: 0;
+	position: relative;
+	height: 200px;
+	width: 100%;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	padding: 0;
+	border: 1px solid blue;
+	background-color: white;
+}
+
+#brand {
+	position: absolute;
+	display: inline-block;
+	float: left;
+	top: 25px;
+	left: 25px;
+	height: 150px;
+	width: 150px;
+	border: 1px solid black;
+}
+
+.navbar-static-top {
+	padding-bottom: 0;
+	margin-bottom: 5px;
+	padding-top: 20px;
+	border: 1px solid blue;
+}
+
+.header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 50px;
+	width: 100px;
+}
+
+.wrapper {
+	min-height: 100%;
+	/*background-color: #009933;*/
+	background-color: #00CC00;
+}
+
+.navbar {
+	/*min-height: 100px !important;*/
+}
+
+.content {
+	position: relative;
+	min-height: 800px;
+	top: 0px;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	border: 1px solid red; 
+	background-color: white;
+	padding: 10px;
+}
+
+.footer {
+	border-top: 1px solid #E8E8E8; 
+	background-color: lightgray;
+	height: 50px;
+	text-align: center;
+	vertical-align: baseline;
+	padding: 0;
+	margin-bottom: 0;
+	/*background: transparent;*/
+}
+
+#inner-footer {
+	padding:0;
+	margin: 0;
+}
+
+/*This was what was causing the small white ribbon bellow!*/
+#inner-footer p {
+	line-height: 50px;
+	padding:0;
+	margin:0;
+}
+
+#footer-container { 
+	background-color: lightgray;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	height: 40px; 
+}
+
+/*#footer-container #footer { 
+	padding: 24px 0; 
+	border-top: 1px solid #e3e3e3; 
+	text-transform: uppercase; 
+	font-size: 11px; 
+	font-weight: 500; 
+	letter-spacing: 0.15em; 
+}
+.footer {
+	height: 100px;
+	text-align: center;
+	background-color: #f5f5f5;
+}
+text-muted {
+	line-height: 100px;
+}
+.p.copyright {
+	margin-bottom: 0px;
+	text-align: center;
+}
+p {
+	margin: 0 0 20px 0;
+	line-height: 22px;
+}
+#footer-container { 
+	margin-top: 24px; 
+}
+#footer .container .one-third { 
+	margin-bottom: 14px; 
+}
+#footer-container #footer { 
+	padding: 48px 0; 
+}
+#footer-container #bottom { 
+	height: auto; 
+	padding-bottom: 0px; 
+}
+span, #footer {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}	*/

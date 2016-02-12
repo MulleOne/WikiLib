@@ -1,0 +1,19 @@
+<ol>
+	<% @authors.each do |author| %>	
+		<li>
+			<% @count = 0 %>
+			<% @authors_book_list = [] %>
+			<% @books.each do |book| %>
+				<% if book.authors.include?(author) %> 
+					<% @authors_book_list.push(book) %>
+					<% @count = @count+1 %>
+				<% end %>
+			<% end %>
+			<%= link_to authors_book_list_books_path(@book, :authors_book_list => @authors_book_list) do %>
+				<%= author.first_name %>
+				<%= author.last_name %>
+				<i>(<%= @count %>)</i>
+			<% end %>
+		</li><br>
+	<% end %>
+</ol>
